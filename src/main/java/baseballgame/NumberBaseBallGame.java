@@ -1,15 +1,19 @@
 package baseballgame;
 
-import java.util.Random;
-import java.util.Scanner;
+import util.BaseballRandomNumber;
+import util.BaseballScanner;
+import util.RandomNumberUtil;
+import util.ScannerUtil;
 
 public class NumberBaseBallGame {
 
-    private final Scanner scanner;
+    private final ScannerUtil scanner;
+    private final RandomNumberUtil randomNumberCreator;
     private String[] answer;
 
-    public NumberBaseBallGame(final Scanner scanner) {
-        this.scanner = scanner;
+    public NumberBaseBallGame() {
+        this.randomNumberCreator = new BaseballRandomNumber();
+        this.scanner = new BaseballScanner();
     }
 
     public String[] input() {
@@ -24,7 +28,7 @@ public class NumberBaseBallGame {
 
     public void start() {
         boolean isCorrect = false;
-        createRandomNumber();
+        randomNumberCreator.createRandomNumber();
 
         while (!isCorrect) {
             final String[] input = input();
@@ -35,15 +39,5 @@ public class NumberBaseBallGame {
         if (string.length() != 3) {
             throw new RuntimeException("숫자는 반드시 3자리만 입력 해야 합니다.");
         }
-    }
-
-    private void createRandomNumber() {
-        final Random random = new Random();
-
-        final int first = random.nextInt(9) + 1;
-        final int second = random.nextInt(9) + 1;
-        final int third = random.nextInt(9) + 1;
-
-        answer = new String[]{String.valueOf(first), String.valueOf(second), String.valueOf(third)};
     }
 }
