@@ -13,6 +13,10 @@ public class Ball {
 
     public BallStatus play(Ball ball) {
 
+        // 1,4 - 2,5 / nothing
+        // 1,4 - 2,4 / ball
+        // 1,4 - 1,4 / strike
+
         if (this.equals(ball)) {
             return BallStatus.STRIKE;
         }
